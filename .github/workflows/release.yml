@@ -1,0 +1,116 @@
+name: 构建 IPA 并发布 Release
+
+# 打 v* 标签（如 v2.0.5）时：
+#   在 macOS runner 上编译 OnlyPaste（主 App + 键盘扩展），
+#   导出【未签名】IPA 并发布到 Release。
+#
+# 为什么是未签名：
+#   本 App 带键盘扩展，需要「主 App + 扩展」两个 bundle id；
+#   而超级签的精确 App ID 描述文件只能授权一个 id，覆盖不了扩展
+#   （强行改成同一个 id 会违反"扩展 id 必须以宿主 bundle id 为前缀"，iOS 直接拒装）。
+#   所以改由你在手机上用「免费 Apple ID + 轻松签 / SideStore」自行签名：
+#     - 主 App bundle id     : ltd.lone.OnlyPaste
+#     - 键盘扩展 bundle id  : ltd.lone.OnlyPaste.keyboard
+#     - 不使用 App Group（免费账号不支持），数据存在键盘自己的沙盒里
+#   签名时务必保持上面两个 id 的“前缀”关系，不要改成同一个。
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release 标签（如 v2.0.5）'
+        required: true
+        default: 'v2.0.5'
+
+permissions:
+  contents: write
+
+env:
+  PROJECT: OnlyPaste.xcodeproj
+  SCHEME: OnlyPaste
+
+jobs:
+  build:
+    name: 编译并导出未签名 IPA
+    runs-on: macos-latest
+
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 选择 Xcode 并查看版本
+        run: |
+          ls -d /Applications/Xcode*.app 2>/dev/null || true
+          sudo xcode-select -s /Applications/Xcode.app
+          xcodebuild -version
+
+      - name: 归档（不签名，保留两个正确 bundle id）
+        run: |
+          xcodebuild -project "$PROJECT" -scheme "$SCHEME" -configuration Release \
+            -destination 'generic/platform=iOS' \
+            -archivePath "$RUNNER_TEMP/OnlyPaste.xcarchive" \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
+            clean archive
+
+      - name: 打包未签名 IPA
+        run: |
+          set -euo pipefail
+          APP="$RUNNER_TEMP/OnlyPaste.xcarchive/Products/Applications/OnlyPaste.app"
+          APPEX="$APP/PlugIns/OnlyPasteKeyboard.appex"
+          test -d "$APP"   || { echo "❌ 找不到主 App"; exit 1; }
+          test -d "$APPEX" || { echo "❌ 找不到键盘扩展"; exit 1; }
+
+          echo "=== 产物 bundle id 与键盘扩展元数据自检 ==="
+          python3 - "$APP" <<'PY'
+          import plistlib, sys
+          app = sys.argv[1]
+          with open(f"{app}/Info.plist", "rb") as f:
+              app_info = plistlib.load(f)
+          with open(f"{app}/PlugIns/OnlyPasteKeyboard.appex/Info.plist", "rb") as f:
+              ext_info = plistlib.load(f)
+          parent_id = app_info["CFBundleIdentifier"]
+          ext_id = ext_info["CFBundleIdentifier"]
+          extension = ext_info["NSExtension"]
+          attributes = extension.get("NSExtensionAttributes", {})
+          assert ext_id.startswith(parent_id + "."), (
+              f"扩展 ID {ext_id} 必须以主 App ID {parent_id}. 开头"
+          )
+          assert extension.get("NSExtensionPointIdentifier") == "com.apple.keyboard-service", (
+              "NSExtensionPointIdentifier 必须位于 NSExtension 下，不能放进 NSExtensionAttributes"
+          )
+          assert attributes.get("RequestsOpenAccess") is True, (
+              "键盘扩展必须在 NSExtensionAttributes 中设置 RequestsOpenAccess=true"
+          )
+          print(f"  App: {parent_id}")
+          print(f"  Keyboard extension: {ext_id}")
+          print(f"  Extension point: {extension['NSExtensionPointIdentifier']}")
+          PY
+
+          rm -rf "$RUNNER_TEMP/Payload"
+          mkdir -p "$RUNNER_TEMP/export" "$RUNNER_TEMP/Payload"
+          cp -R "$APP" "$RUNNER_TEMP/Payload/"
+          (cd "$RUNNER_TEMP" && zip -qry "$RUNNER_TEMP/export/OnlyPaste.ipa" Payload)
+          ls -lh "$RUNNER_TEMP/export"/*.ipa
+
+      - name: 创建 Release 并上传 IPA
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.event.inputs.tag || github.ref_name }}
+          name: OnlyPaste ${{ github.event.inputs.tag || github.ref_name }}
+          files: ${{ runner.temp }}/export/*.ipa
+          generate_release_notes: true
+          body: |
+            ## OnlyPaste 未签名 IPA（请自行签名安装）
+
+            这是**未签名**的 IPA，请用手机上的「轻松签 / SideStore」配合**免费 Apple ID** 自签后再安装。
+
+            - 主 App bundle id：`ltd.lone.OnlyPaste`
+            - 键盘扩展 bundle id：`ltd.lone.OnlyPaste.keyboard`
+            - 不使用 App Group；数据存在键盘扩展自己的沙盒里
+
+            签名时**不要**把两个 bundle id 改成同一个，保持“扩展 = 主 App + .keyboard”的前缀关系。
+
+            安装后：设置 → 通用 → 键盘 → 键盘 → 添加新键盘 → 选 OnlyPaste → 点进去开启**「允许完全访问」**。

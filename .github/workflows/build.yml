@@ -1,0 +1,47 @@
+name: 编译验证 OnlyPaste
+
+# 免费 Apple ID 无法在命令行导出可安装的 IPA（苹果限制）。
+# 本工作流只做「编译验证」：确保主 App + 键盘扩展每次推送都能编译通过。
+# 真机安装请在 Mac 上用 Xcode 打开工程，选自己的 Team 本地签名运行。
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: xcodebuild 编译验证
+    runs-on: macos-latest   # 自带 Xcode 15+，支持 iOS 17 SDK
+
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 选择 Xcode 26 并查看版本
+        run: |
+          echo "=== runner 上可用的 Xcode ==="
+          ls -d /Applications/Xcode*.app 2>/dev/null || true
+          # iOS 26 Liquid Glass 需要 Xcode 26（iOS 26 SDK）
+          sudo xcode-select -s /Applications/Xcode.app
+          xcodebuild -version
+
+      - name: 列出共享 scheme
+        run: xcodebuild -list -project OnlyPaste.xcodeproj
+
+      - name: 编译主 App + 键盘扩展（不签名）
+        run: |
+          xcodebuild \
+            -project OnlyPaste.xcodeproj \
+            -scheme OnlyPaste \
+            -configuration Debug \
+            -sdk iphonesimulator \
+            -destination 'generic/platform=iOS Simulator' \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            build
+
+      - name: 构建结果
+        if: always()
+        run: echo "编译验证结束（退出码见上一步）。"

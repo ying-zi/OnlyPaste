@@ -1,0 +1,406 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3A0000000000000000000001 /* OnlyPasteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0000000000000000000001 /* OnlyPasteApp.swift */; };
+		3A0000000000000000000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0000000000000000000002 /* ContentView.swift */; };
+		3A0000000000000000000007 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0000000000000000000009 /* Models.swift */; };
+		3A0000000000000000000008 /* SharedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A000000000000000000000A /* SharedStore.swift */; };
+		3A0000000000000000000009 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A000000000000000000000E /* Assets.xcassets */; };
+		3A0000000000000000000011 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A000000000000000000000B /* KeyboardViewController.swift */; };
+		3A0000000000000000000012 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0000000000000000000009 /* Models.swift */; };
+		3A0000000000000000000013 /* SharedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A000000000000000000000A /* SharedStore.swift */; };
+		3A0000000000000000000020 /* OnlyPasteKeyboard.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2A0000000000000000000065 /* OnlyPasteKeyboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4A0000000000000000000004 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				3A0000000000000000000020 /* OnlyPasteKeyboard.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		2A0000000000000000000001 /* OnlyPasteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlyPasteApp.swift; sourceTree = "<group>"; };
+		2A0000000000000000000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		2A0000000000000000000007 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2A0000000000000000000008 /* OnlyPaste.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OnlyPaste.entitlements; sourceTree = "<group>"; };
+		2A0000000000000000000009 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		2A000000000000000000000A /* SharedStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedStore.swift; sourceTree = "<group>"; };
+		2A000000000000000000000B /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
+		2A000000000000000000000C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2A000000000000000000000D /* OnlyPasteKeyboard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OnlyPasteKeyboard.entitlements; sourceTree = "<group>"; };
+		2A000000000000000000000E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2A0000000000000000000064 /* OnlyPaste.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnlyPaste.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A0000000000000000000065 /* OnlyPasteKeyboard.appex */ = {isa = PBXFileReference; explicitFileType = wrapper.app-extension; includeInIndex = 0; path = OnlyPasteKeyboard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4A0000000000000000000002 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4A0000000000000000000012 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1A2B3C4D5E6F708192A3B4C6 = {
+			isa = PBXGroup;
+			children = (
+				1A2B3C4D5E6F708192A3B4C7 /* OnlyPaste */,
+				1A2B3C4D5E6F708192A3B4C9 /* OnlyPasteKeyboard */,
+				1A2B3C4D5E6F708192A3B4CA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1A2B3C4D5E6F708192A3B4C7 /* OnlyPaste */ = {
+			isa = PBXGroup;
+			children = (
+				2A0000000000000000000001 /* OnlyPasteApp.swift */,
+				2A0000000000000000000002 /* ContentView.swift */,
+				2A000000000000000000000E /* Assets.xcassets */,
+				1A2B3C4D5E6F708192A3B4C8 /* Shared */,
+				2A0000000000000000000007 /* Info.plist */,
+				2A0000000000000000000008 /* OnlyPaste.entitlements */,
+			);
+			path = OnlyPaste;
+			sourceTree = "<group>";
+		};
+		1A2B3C4D5E6F708192A3B4C8 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				2A0000000000000000000009 /* Models.swift */,
+				2A000000000000000000000A /* SharedStore.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		1A2B3C4D5E6F708192A3B4C9 /* OnlyPasteKeyboard */ = {
+			isa = PBXGroup;
+			children = (
+				2A000000000000000000000B /* KeyboardViewController.swift */,
+				2A000000000000000000000C /* Info.plist */,
+				2A000000000000000000000D /* OnlyPasteKeyboard.entitlements */,
+			);
+			path = OnlyPasteKeyboard;
+			sourceTree = "<group>";
+		};
+		1A2B3C4D5E6F708192A3B4CA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2A0000000000000000000064 /* OnlyPaste.app */,
+				2A0000000000000000000065 /* OnlyPasteKeyboard.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1A2B3C4D5E6F708192A3B4D1 /* OnlyPaste */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5A0000000000000000000002 /* Build configuration list for PBXNativeTarget "OnlyPaste" */;
+			buildPhases = (
+				4A0000000000000000000001 /* Sources */,
+				4A0000000000000000000002 /* Frameworks */,
+				4A0000000000000000000003 /* Resources */,
+				4A0000000000000000000004 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OnlyPaste;
+			productName = OnlyPaste;
+			productReference = 2A0000000000000000000064 /* OnlyPaste.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1A2B3C4D5E6F708192A3B4D2 /* OnlyPasteKeyboard */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5A0000000000000000000003 /* Build configuration list for PBXNativeTarget "OnlyPasteKeyboard" */;
+			buildPhases = (
+				4A0000000000000000000011 /* Sources */,
+				4A0000000000000000000012 /* Frameworks */,
+				4A0000000000000000000013 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OnlyPasteKeyboard;
+			productName = OnlyPasteKeyboard;
+			productReference = 2A0000000000000000000065 /* OnlyPasteKeyboard.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1A2B3C4D5E6F708192A3B4C5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					1A2B3C4D5E6F708192A3B4D1 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+					1A2B3C4D5E6F708192A3B4D2 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = 5A0000000000000000000001 /* Build configuration list for PBXProject "OnlyPaste" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1A2B3C4D5E6F708192A3B4C6;
+			productRefGroup = 1A2B3C4D5E6F708192A3B4CA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1A2B3C4D5E6F708192A3B4D1 /* OnlyPaste */,
+				1A2B3C4D5E6F708192A3B4D2 /* OnlyPasteKeyboard */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4A0000000000000000000003 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A0000000000000000000009 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4A0000000000000000000013 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4A0000000000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A0000000000000000000001 /* OnlyPasteApp.swift in Sources */,
+				3A0000000000000000000002 /* ContentView.swift in Sources */,
+				3A0000000000000000000007 /* Models.swift in Sources */,
+				3A0000000000000000000008 /* SharedStore.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4A0000000000000000000011 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A0000000000000000000011 /* KeyboardViewController.swift in Sources */,
+				3A0000000000000000000012 /* Models.swift in Sources */,
+				3A0000000000000000000013 /* SharedStore.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		6A0000000000000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		6A0000000000000000000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6A0000000000000000000011 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = OnlyPaste/OnlyPaste.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = OnlyPaste/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ltd.lone.OnlyPaste;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6A0000000000000000000012 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = OnlyPaste/OnlyPaste.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = OnlyPaste/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ltd.lone.OnlyPaste;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		6A0000000000000000000021 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = OnlyPasteKeyboard/OnlyPasteKeyboard.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = OnlyPasteKeyboard/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ltd.lone.OnlyPaste.keyboard;
+				PRODUCT_BUNDLE_PACKAGE_TYPE = "XPC!";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6A0000000000000000000022 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = OnlyPasteKeyboard/OnlyPasteKeyboard.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = OnlyPasteKeyboard/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ltd.lone.OnlyPaste.keyboard;
+				PRODUCT_BUNDLE_PACKAGE_TYPE = "XPC!";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5A0000000000000000000001 /* Build configuration list for PBXProject "OnlyPaste" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6A0000000000000000000001 /* Debug */,
+				6A0000000000000000000002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5A0000000000000000000002 /* Build configuration list for PBXNativeTarget "OnlyPaste" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6A0000000000000000000011 /* Debug */,
+				6A0000000000000000000012 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5A0000000000000000000003 /* Build configuration list for PBXNativeTarget "OnlyPasteKeyboard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6A0000000000000000000021 /* Debug */,
+				6A0000000000000000000022 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1A2B3C4D5E6F708192A3B4C5 /* Project object */;
+}
